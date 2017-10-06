@@ -1,0 +1,8 @@
+export const APP_CONFIG: any = {
+	back_url: 'http://localhost:8080/web/app_dev.php/',
+}
+
+export const OAUTH_CONFIG: any = {
+	client: '1_1in5mw4psbb4wo8g08840o00kg048sws0k8wcos8s4co4k404',
+	secret: '4xzfii1i3ao8ow8wo80k0g8ko8ogw80s0ggg0g4gsw8k84c808'
+}

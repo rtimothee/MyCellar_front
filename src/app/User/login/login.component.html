@@ -1,3 +1,42 @@
-<p>
-  login works!
-</p>
+<div id="login">
+	<h2>Login</h2>
+	<form [formGroup]="login_form" (submit)="login_submit(login_form)" *ngIf='!loader'>
+		<div class="formControl">
+			<input type="text"
+				name="login" placeholder="login"
+				[formControl]="login_form.controls['login']"
+			/>
+			<div class="validation">
+				<p *ngIf="!login_form.valid && login_form.touched && login_form.controls ['login'].hasError('required')">
+					Champ obligatoire
+				</p>
+				<p *ngIf="!login_form.valid && login_form.touched && login_form.controls ['login'].hasError('minlength')">
+					Votre login n'est pas valide
+				</p>
+			</div>
+		</div>
+		<div class="formControl">
+			<input type="password"
+				name="password" placeholder="password"
+				[formControl]="login_form.controls['password']"
+			/>
+			<div class="validation">
+				<p *ngIf="!login_form.valid && login_form.touched && login_form.controls ['password'].hasError('required')">
+					Champ obligatoire
+				</p>
+				<p *ngIf="!login_form.valid && login_form.touched && login_form.controls ['password'].hasError('minlength')">
+					Votre mot de passe n'est pas valide
+				</p>
+			</div>
+		</div>
+		<div class="formControl">
+			<input type="submit" value="Se connecter"/>
+		</div>
+		<div class="login_error" *ngIf="message != ''">
+			{{message}}
+		</div>
+	</form>
+	<div *ngIf="loader">
+		loading
+	</div>
+</div>

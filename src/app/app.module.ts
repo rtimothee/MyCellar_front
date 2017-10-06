@@ -2,13 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms'
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
+
+/** User **/
 import { SignupComponent } from './User/signup/signup.component';
 import { LoginComponent } from './User/login/login.component';
-
+import { UserDetailsComponent } from './User/details/user-details.component';
+import { UserService } from './services/user.service';
+import { ApiService } from './services/api.service';
 
 //Routes
 const routes: Routes = [
@@ -27,13 +33,19 @@ const routes: Routes = [
     HomeComponent,
     MenuComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    ApiService
+  ],
   bootstrap: [AppComponent]
 })
 
