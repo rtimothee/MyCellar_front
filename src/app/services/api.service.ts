@@ -10,7 +10,10 @@ export class ApiService {
 	token_type: string;
 
 
-	constructor(public http: Http) {}
+	constructor(public http: Http) {
+		this.token = localStorage.getItem('token');
+		this.refresh_token = localStorage.getItem('Refreshtoken');
+	}
 
 	oauth(login: string, password: string, callback: any) : any {
 		const domain = APP_CONFIG.back_url;
@@ -31,6 +34,8 @@ export class ApiService {
 			this.token = data.access_token;
 			this.refresh_token = data.refresh_token;
 			this.token_type = data.token_type;
+			localStorage.setItem('token', this.token);
+			localStorage.setItem('Refreshtoken', this.refresh_token);
 
 			callback(true);
 		}, (err: Response) => {
@@ -39,6 +44,14 @@ export class ApiService {
 
 			callback(false, data.error);
 		});
+	}
+
+	checkToken() : boolean{
+		if(!this.token) this.token = localStorage.getItem('token');
+		if(!this.refresh_token) this.token = localStorage.getItem('Refreshtoken');
+
+		//TODO : Finish with call server
+
 	}
 
 	get(query: string, params: string[]){

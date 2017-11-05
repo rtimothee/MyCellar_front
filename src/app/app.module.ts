@@ -15,6 +15,7 @@ import { LoginComponent } from './User/login/login.component';
 import { UserDetailsComponent } from './User/details/user-details.component';
 import { UserService } from './services/user.service';
 import { ApiService } from './services/api.service';
+import { AuthGuard } from './auth.guard';
 
 //Routes
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   // UserManage
   {path:'login', component: LoginComponent},
-  {path:'signup', component: SignupComponent}
+  {path:'signup', component: SignupComponent},
+  {path:'user', component: UserDetailsComponent, canActivate: [AuthGuard]}
 ];
 
 
@@ -44,7 +46,8 @@ const routes: Routes = [
   ],
   providers: [
     UserService,
-    ApiService
+    ApiService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

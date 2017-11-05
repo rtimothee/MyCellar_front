@@ -25,4 +25,12 @@ export class UserService {
 			});
 		});
 	}
+
+	isLogged() : boolean {
+		if(this.apiService.checkToken()){
+			return true;
+		}
+		return false;
+		// TODO add averification about life token to optimize the number of server requetes
+	}
 }
