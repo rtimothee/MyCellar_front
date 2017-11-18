@@ -14,7 +14,7 @@ export class UserModel{
 	 * Getter Id
 	 *
 	 * @return number Id
-	 */ 
+	 */
 	getId(): number {
 		return this.id;
 	}
@@ -23,7 +23,7 @@ export class UserModel{
 	 * Setter Id
 	 *
 	 * @param number Id
-	 */ 
+	 */
 	setId(id: number): void {
 		this.id = id;
 	}

@@ -10,21 +10,30 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 
 /** User **/
-import { SignupComponent } from './User/signup/signup.component';
-import { LoginComponent } from './User/login/login.component';
-import { UserDetailsComponent } from './User/details/user-details.component';
+import { SignupComponent } from './Components/User/signup/signup.component';
+import { LoginComponent } from './Components/User/login/login.component';
+import { UserDetailsComponent } from './Components/User/details/user-details.component';
 import { UserService } from './services/user.service';
 import { ApiService } from './services/api.service';
 import { AuthGuard } from './auth.guard';
+
+/** Cellar **/
+import { CellarComponent } from './Components/Cellar/cellar/cellar.component';
+import { WineComponent } from './Components/Cellar/wine/wine.component';
+
 
 //Routes
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  // UserManage
+  // User Management
   {path:'login', component: LoginComponent},
   {path:'register', component: SignupComponent},
-  {path:'profil', component: UserDetailsComponent, canActivate: [AuthGuard]}
+  {path:'profil', component: UserDetailsComponent, canActivate: [AuthGuard]},
+
+  // Cellar Management
+  {path:'my-cellar', component: CellarComponent, canActivate: [AuthGuard]},
+  {path:'wine/{id}', component: WineComponent, canActivate: [AuthGuard]},
 ];
 
 
@@ -36,7 +45,9 @@ const routes: Routes = [
     MenuComponent,
     SignupComponent,
     LoginComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    CellarComponent,
+    WineComponent,
   ],
   imports: [
     BrowserModule,

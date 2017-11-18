@@ -86,19 +86,20 @@ export class ApiService {
 	 *
 	 * @param {string} query
 	 * @param {object} params
+	 * @param {object} logged
 	 * @return {Promise} Promise for asynchronous request
 	 */
-	get(query: string, params?: any) : any {
-		if(!params) params = {};
+	get(query: string, params = {}, logged = true) : any {
 		return new Promise((resolve, reject) => {
 			console.log("GET Query");
 
 			let data = null;
 			let url = this.URLFormat(this.domain+query, Object.assign({}, params));
+			let header = (logged)? {headers: this.getAuthorizationHeader()}:null;
 
 			console.log('test : ', url);
 
-			this.http.get(url, {headers: this.getAuthorizationHeader()}).subscribe((res: Response) => {
+			this.http.get(url, header).subscribe((res: Response) => {
 					data = res.json();
 
 					//traitement
@@ -118,13 +119,14 @@ export class ApiService {
 	 *
 	 * @param {string} query
 	 * @param {object} params
+	 * @param {object} logged
 	 * @return {Promise} Promise for asynchronous request
 	 */
-	post(query: string, params: any) : any {
+	post(query: string, params: any, logged = true) : any {
 		return new Promise((resolve, reject) => {
 			console.log("POST Query");
 			let data = null;
-			let header = {headers: this.getAuthorizationHeader()};
+			let header = (logged)?{headers: this.getAuthorizationHeader()}:null;
 			//TODO: add verifications on params datas
 
 			this.http.post(this.domain+query, params, header).subscribe((res: Response) => {
@@ -155,11 +157,9 @@ export class ApiService {
 	URLFormat(url: string, params: any) : string {
 		console.log("URLFormat", url, params);
 		//TODO: Add some verification on the params format
-		let newurl = url; 
+		let newurl = url;
 		let tab_params = [];
-		console.log("test before key()", params);
-		let index = Object.keys(params); // BUG: ??? resolve Promise at this line ???
-		console.log("test after key()");
+		let index = Object.keys(params);
 
 		for(let i = 0; i < index.length; i++){
 			tab_params.push(index[i]+'='+encodeURIComponent(params[index[i]]));
