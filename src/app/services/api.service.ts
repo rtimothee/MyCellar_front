@@ -107,7 +107,7 @@ export class ApiService {
 				}, (err: Response) => {
 					data = err.json();
 
-					reject(data.error);
+					reject(data.error_description);
 				});
 		});
 	}
@@ -120,24 +120,23 @@ export class ApiService {
 	 * @param {object} params
 	 * @return {Promise} Promise for asynchronous request
 	 */
-	post(query: string, params: string[]) : any {
+	post(query: string, params: any) : any {
 		return new Promise((resolve, reject) => {
 			console.log("POST Query");
 			let data = null;
+			let header = {headers: this.getAuthorizationHeader()};
+			//TODO: add verifications on params datas
 
-			this.http.post(this.domain+query, {
-				token : this.token,
-				//datas: params
-			}).subscribe((res: Response) => {
+			this.http.post(this.domain+query, params, header).subscribe((res: Response) => {
 				data = res.json();
 
 				//traitement
 
-				resolve();
+				resolve(data);
 			}, (err: Response) => {
 				data = err.json();
 
-				reject(data.error);
+				reject(data.error_description);
 			});
 		});
 	}

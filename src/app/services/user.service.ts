@@ -46,6 +46,22 @@ export class UserService {
 		});
 	}
 
+	register(login: string, password: string, email: string) : any{
+		return new Promise((resolve, reject) => {
+			this.apiService.post('user', {
+				'username': login, 
+				'password': password,
+				'email': email
+			}).then((data) => {
+					console.log(data);
+					resolve();
+				
+			}, (err: any) => {
+				reject(err);
+			});
+		});
+	}
+
 	logout() {
 		this.apiService.emptyToken();
 		this.user = null;

@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   // UserManage
   {path:'login', component: LoginComponent},
-  {path:'signup', component: SignupComponent},
+  {path:'register', component: SignupComponent},
   {path:'profil', component: UserDetailsComponent, canActivate: [AuthGuard]}
 ];
 
