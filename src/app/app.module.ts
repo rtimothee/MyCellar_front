@@ -6,8 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './Components/home/home.component';
+import { MenuComponent } from './Components/menu/menu.component';
 
 /** User **/
 import { SignupComponent } from './Components/User/signup/signup.component';

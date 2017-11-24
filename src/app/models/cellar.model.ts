@@ -4,11 +4,13 @@ export class CellarModel{
   id: number;
   name: string;
   wines: WineModel[];
+  description: string;
 
-  constructor(id: number, name: string, wines: WineModel[]){
+  constructor(id: number, name: string, wines: WineModel[], description = null){
     this.id = id;
     this.name = name;
     this.wines = wines;
+    this.description = description;
   }
 
   /**
@@ -73,4 +75,24 @@ export class CellarModel{
   addWine(wine: WineModel): void {
     this.wines.push(wine);
   }
+
+
+  /**
+   * Getter description
+   *
+   * @return string description
+   */
+  getDescription(): string {
+    return this.description;
+  }
+
+  /**
+   * Setter description
+   *
+   * @param string description
+   */
+  setDescription(description: string): void {
+    this.description = description;
+  }
+
 }
